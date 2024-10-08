@@ -12,5 +12,5 @@ export const ProductSchema = object({
     availability: boolean()
 })
 
-export type Product = InferOutput<typeof ProductSchema>
 export const ProductsSchema = array(ProductSchema)
+export type Product = InferOutput<typeof ProductSchema>
