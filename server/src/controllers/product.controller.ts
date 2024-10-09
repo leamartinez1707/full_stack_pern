@@ -44,11 +44,10 @@ export const updateAvailability = async (req: Request, res: Response) => {
     const { id } = req.params;
     const product = await Product.findByPk(id)
     if (!product) return res.status(404).json({ error: 'Product not found' })
-
-    // Modificar el estado del producto
-    product.availability = !product.dataValues.availability
-    await product.save()
-    res.json({ data: product })
+        
+    // Invertir el estado de disponibilidad
+    const updatedProduct = await product.update({ availability: !product.dataValues.availability });
+    res.json({ data: updatedProduct })
 }
 
 
