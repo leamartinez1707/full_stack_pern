@@ -17,7 +17,7 @@ export const addProduct = async (data: ProductData) => {
         if (result.success) {
             // Send data to the server
             const url = `${import.meta.env.VITE_API_URL}/api/products`
-            const { data } = await axios.post(url, {
+            await axios.post(url, {
                 name: result.output.name,
                 price: result.output.price
             })
