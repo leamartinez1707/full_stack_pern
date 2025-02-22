@@ -12,7 +12,6 @@ export const productsLoader = async () => {
 export const action = async ({ request }: ActionFunctionArgs) => {
 
     const data = Object.fromEntries(await request.formData())
-    console.log(data)
     await updateAvailability(+data.id)
     return {}
 }
