@@ -6,6 +6,216 @@ import { handleInputErrors } from "../middleware";
 
 const router = Router();
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Product:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: integer
+ *           description: Product ID
+ *           example: 1
+ *         name:
+ *           type: string
+ *           description: Product name
+ *           example: "Monitor 42 pulgadas"
+ *         price:
+ *           type: number
+ *           description: Product price
+ *           example: 299
+ *         availability:
+ *           type: boolean
+ *           description: Product availability
+ *           example: true
+ */
+
+/**
+*@swagger
+* /api/products:
+*      get:
+*          summary: Get a list of products
+*          tags:
+*               - Products
+*          description: Return a list of products
+*          responses: 
+*               200:
+*                   description: Successful response
+*                   content:
+*                      application/json:
+*                         schema:
+*                             type: array
+*                             items: 
+*                               $ref: '#/components/schemas/Product'
+* 
+* 
+* 
+* 
+*/
+
+/**
+ * @swagger
+ * /api/products/{id}:
+ *   get:
+ *     summary: Get a product by id
+ *     tags:
+ *       - Products
+ *     description: Return a product based on its ID
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         description: Product ID
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Successful response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Product'
+ *       404:
+ *         description: Not found
+ *       400:
+ *         description: Bad request
+ */
+
+/**
+ * @swagger
+ * /api/products/{id}:
+ *   post:
+ *     summary: Create a new product
+ *     tags:
+ *       - Products
+ *     description: Returns a new product
+ *     requestBody: 
+ *          required: true
+ *          content:
+ *             application/json:
+ *                schema:
+ *                  type: object
+ *                  properties:
+ *                      name:
+ *                          type: string
+ *                          example: "Monitor LCD 42 pulgadas"
+ *                      price:
+ *                          type: number
+ *                          example: 299
+ *     responses:
+ *       200:
+ *         description: Successful response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Product'
+ *       400:
+ *         description: Bad request - Invalid input data
+ * 
+ */
+
+/**
+ * @swagger
+ * /api/products/{id}:
+ *   put:
+ *     summary: Update a product
+ *     tags:
+ *       - Products
+ *     description: Returns the updated product
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         description: Product ID
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     requestBody: 
+ *          required: true
+ *          content:
+ *             application/json:
+ *                schema:
+ *                  type: object
+ *                  properties:
+ *                      name:
+ *                          type: string
+ *                          example: "Monitor LCD 42 pulgadas"
+ *                      price:
+ *                          type: number
+ *                          example: 299
+ *                      availability:
+ *                          type: boolean
+ *                          example: true
+ *     responses:
+ *       200:
+ *         description: Successful response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Product'
+ *       404:
+ *         description: Product not found
+ *       400:
+ *         description: Bad request - Invalid ID or input data
+ */
+
+/**
+ * @swagger 
+ *  /api/products/{id}:
+ *   patch:
+ *     summary: Update a product availabilty
+ *     tags:
+ *       - Products
+ *     description: Returns the updated product availability
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         description: Product ID
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Successful response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Product'
+ *       404:
+ *         description: Product not found
+ *       400:
+ *         description: Bad request - Invalid ID
+ */
+
+/**
+ * @swagger 
+ *  /api/products/{id}:
+ *   delete:
+ *     summary: Delete a product
+ *     tags:
+ *       - Products
+ *     description: Returns a message indicating that the product was deleted
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         description: Product ID
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Successful response
+ *         content:
+ *           text/plain:
+ *             schema:
+ *               type: string
+ *               value: "Product deleted successfully"
+ *       404:
+ *         description: Product not found
+ *       400:
+ *         description: Bad request - Invalid ID
+ */
+
 
 router.get('/', getProducts);
 

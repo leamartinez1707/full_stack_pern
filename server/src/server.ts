@@ -2,6 +2,8 @@ import express from 'express';
 import cors, { CorsOptions } from 'cors'
 import router from './routes/router';
 import db from './config/db';
+import swaggerUi from 'swagger-ui-express'
+import swaggerSpec, { swaggerUiOptions } from './config/swagger';
 import colors from 'colors';
 import morgan from 'morgan';
 
@@ -18,7 +20,7 @@ export const connectDB = async () => {
         console.log(colors.bgRed.white('Couldnt connect to the database'));
     }
 }
-connectDB();
+// connectDB();
 // Instancia de express
 const server = express();
 // Permitir conexiones externas
@@ -32,11 +34,16 @@ const corsOptions: CorsOptions = {
     }
 
 }
-server.use(cors(corsOptions));
+// server.use(cors(corsOptions));
 server.use(morgan('dev'));
+
 // Leer datos de formularios
 server.use(express.json());
 server.use('/api/products', router);
+
+// Docs
+server.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerUiOptions));
+
 
 server.get('/api', (req, res) => {
     res.json({ message: 'API con express y typescript' });

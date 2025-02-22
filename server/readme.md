@@ -1,7 +1,7 @@
 ### Dependencias instaladas:
 #### Typescript y TS-Node para utilizar TS en Node. Nodemon para reiniciar el servidor cuando se hagan cambios. Express como entorno de trabajo. Colors para errores en terminal diferenciados.
 #### Sequelize como ORM para conectar con PostgreSQL. Sequelize-typescript.
-#### Express-Validator para validad datos provienientes de un JSON
+#### Express-Validator para validar datos provienientes de un JSON
 #### Testing con Jest y Supertest. ts-jest
 #### Types para Node y TypeScript y para Jest
 

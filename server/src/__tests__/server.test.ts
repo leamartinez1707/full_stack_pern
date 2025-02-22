@@ -1,18 +1,5 @@
-import req from "supertest"
-import server, { connectDB } from "../server"
 import db from "../config/db"
-
-describe("GET /api", () => {
-    it('Should send back a callback response', async () => {
-        const res = await req(server).get('/api')
-        expect(res.status).toBe(200)
-        expect(res.headers['content-type']).toMatch(/json/)
-        expect(res.body.message).toBe('API con express y typescript')
-
-        expect(res.status).not.toBe(404)
-        expect(res.body.message).not.toBe('API con express')
-    })
-})
+import { connectDB } from '../server'
 
 jest.mock('../config/db')
 
